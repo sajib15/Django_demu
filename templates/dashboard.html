@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #1a1a2e; color: #fff; padding: 20px; }
+        .dashboard-container { background-color: #162447; padding: 30px; border-radius: 10px; margin: 50px auto; width: 80%; }
+        h2 { text-align: center; color: #e94560; }
+        .welcome-message { text-align: center; margin-bottom: 20px; color: #fff; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table th, table td { padding: 12px; border: 1px solid #ccc; text-align: left; }
+        table th { background-color: #1f4068; color: #fff; }
+        table td { background-color: #0f3460; }
+        .logout-button {
+            display: block;
+            width: 100px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .logout-button:hover {
+            background-color: #f06477;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Device Dashboard</h2>
+        <p class="welcome-message">Welcome, {{ username }}!</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device Name</th>
+                    <th>IP Address</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                <tr>
+                    <td>{{ device.name }}</td>
+                    <td>{{ device.ip_address }}</td>
+                    <td>{{ device.details }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    </div>
+</body>
+</html>

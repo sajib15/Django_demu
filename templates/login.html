@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a2e;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #162447;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+        h2 { text-align: center; color: #e94560; }
+        form { display: flex; flex-direction: column; }
+        .input-box { position: relative; margin-bottom: 30px; }
+        .input-box input { width: 100%; padding: 10px; border: none; border-bottom: 2px solid #fff; background: none; color: #fff; }
+        .input-box label { position: absolute; top: 0; left: 0; padding: 10px 0; font-size: 18px; color: #aaa; pointer-events: none; transition: 0.3s ease; }
+        button { padding: 10px; background-color: #e94560; color: #fff; border: none; cursor: pointer; border-radius: 5px; }
+        button:hover { background-color: #f06477; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-box">
+                <input type="text" name="username" required>
+                <label>Username</label>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" required>
+                <label>Password</label>
+            </div>
+            <button type="submit">Login</button>
+            {% if form.errors %}
+                <p style="color: red;">Invalid login credentials.</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
